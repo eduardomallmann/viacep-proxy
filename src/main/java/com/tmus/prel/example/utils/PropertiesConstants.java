@@ -1,0 +1,26 @@
+package com.tmus.prel.example.utils;
+
+/**
+ * Enuns responsáveis pelas mensagens do sistema.
+ *
+ * @author eduardo.mallmann
+ * @since 0.0.1
+ */
+public enum PropertiesConstants {
+    WRONG_CEP_NUMBER("error.address.cep.invalid");
+
+    private final String errorKey;
+
+    /**
+     * Construtor principal.
+     *
+     * @param errorKey chave de das mensagens
+     */
+    PropertiesConstants(final String errorKey) {
+        this.errorKey = errorKey;
+    }
+
+    public String getErrorKey() {
+        return errorKey;
+    }
+}

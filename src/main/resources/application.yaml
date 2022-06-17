@@ -1,0 +1,66 @@
+spring:
+  application:
+    name: examples
+  cache:
+    type: redis
+  redis:
+    host: localhost
+    port: 6379
+
+#App Properties
+app:
+  endpoints:
+    viacep.ws: ${VIACEP_WS:viacep.com.br/ws}
+
+#Actuator
+management:
+  endpoint:
+    health:
+      show-components: always
+      show-details: always
+
+#Feign
+feign:
+  client:
+    refresh-enabled: true
+  circuitbreaker:
+    enabled: true
+    alphanumeric-ids:
+      enabled: true
+
+#Resilience4J
+resilience4j:
+  circuitbreaker:
+    instances:
+      locationClient:
+        registerHealthIndicator: true
+        slidingWindowSize: 10
+        minimumNumberOfCalls: 5
+        slidingWindowType: TIME_BASED
+        permittedNumberOfCallsInHalfOpenState: 3
+        automaticTransitionFromOpenToHalfOpenEnabled: true
+        waitDurationInOpenState: 2s
+        failureRateThreshold: 30
+        eventConsumerBufferSize: 10
+        recordExceptions:
+          - org.springframework.web.client.HttpServerErrorException
+          - java.io.IOException
+          - feign.FeignException.InternalServerError
+  retry:
+    instances:
+      locationService:
+        maxAttempts: 3
+        waitDuration: 1s
+        enableExponentialBackoff: true
+        exponentialBackoffMultiplier: 2
+        retryExceptions:
+          - org.springframework.web.client.HttpServerErrorException
+          - java.io.IOException
+          - feign.FeignException
+          - java.lang.Exception
+        ignoreExceptions:
+          - com.tmus.prel.example.exceptions.BusinessException
+
+logging:
+  level:
+    com.tmus.prel.example: DEBUG
