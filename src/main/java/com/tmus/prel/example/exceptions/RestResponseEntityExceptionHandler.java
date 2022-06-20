@@ -66,7 +66,7 @@ public class RestResponseEntityExceptionHandler extends ResponseEntityExceptionH
                                                                   HttpHeaders headers,
                                                                   HttpStatus status,
                                                                   WebRequest request) {
-        ObjectError error = ObjectError.builder().exception(ex.getClass().getName()).message(ex.getMessage()).detail(request.getContextPath()).build();
+        ObjectError error = ObjectError.builder().exception(ex.getClass().getName()).message(ex.getMessage()).build();
         log.error("M=handleMethodArgumentNotValid, message=Starting handle method argument not valid exception, errorClass={}, errorMessage={}", ex.getClass(), error);
         return ResponseEntity.status(status).headers(headers).contentType(MediaType.APPLICATION_JSON).body(error);
     }

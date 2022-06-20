@@ -12,11 +12,11 @@ import org.springframework.web.bind.annotation.PathVariable;
 @FeignClient(name = "LocationClient", url = "${app.endpoints.viacep.ws}")
 public interface LocationClient {
 
-    @GetMapping("/{cep}/json")
+    @GetMapping("${app.endpoints.viacep.right}")
     @Cacheable(key = "'cep_' + #cep")
     Address getAddressByCep(@PathVariable String cep);
 
-    @GetMapping("/{cep}/wrong")
+    @GetMapping("${app.endpoints.viacep.wrong}")
     Address getFallbackAddressByCep(@PathVariable String cep);
 
 }

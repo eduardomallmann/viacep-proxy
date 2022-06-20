@@ -18,14 +18,10 @@ public class ObjectError implements Serializable {
     private String field;
     private String exception;
     private String message;
-    private String detail;
-    private String code;
 
     public ObjectError(final String key, final String exception) {
         this.field = MessageUtils.getMessage(key.substring(0, key.lastIndexOf('.')));
         this.message = MessageUtils.getMessage(key);
         this.exception = exception;
-        this.detail = null;
-        this.code = null;
     }
 }

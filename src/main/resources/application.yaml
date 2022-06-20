@@ -4,13 +4,16 @@ spring:
   cache:
     type: redis
   redis:
-    host: localhost
-    port: 6379
+    host: ${REDIS_URI:localhost}
+    port: ${REDIS_PORT:6379}
 
 #App Properties
 app:
   endpoints:
-    viacep.ws: ${VIACEP_WS:viacep.com.br/ws}
+    viacep:
+      ws: ${VIACEP_WS:viacep.com.br/ws}
+      right: ${VIACEP_RIGHT:/{cep}/json}
+      wrong: ${VIACEP_WRONG:/{cep}/wrong}
 
 #Actuator
 management:
