@@ -2,10 +2,13 @@ spring:
   application:
     name: examples
   cache:
-    type: redis
+    type: ${CACHE_TYPE:redis}
   redis:
     host: ${REDIS_URI:localhost}
     port: ${REDIS_PORT:6379}
+
+server:
+  port: ${SERVER_PORT:8080}
 
 #App Properties
 app:
