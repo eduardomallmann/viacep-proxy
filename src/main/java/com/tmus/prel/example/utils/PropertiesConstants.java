@@ -7,6 +7,8 @@ package com.tmus.prel.example.utils;
  * @since 0.0.1
  */
 public enum PropertiesConstants {
+
+    WRONG_CEP_FIELD("error.address.cep"),
     WRONG_CEP_NUMBER("error.address.cep.invalid");
 
     private final String errorKey;
