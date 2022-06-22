@@ -110,7 +110,7 @@ class LocationControllerTest {
     @Test
     @DisplayName("Check cep with wrong match")
     void checkCEPFailed() {
-        final var objectErrorExpected = new ObjectError(PropertiesConstants.WRONG_CEP_NUMBER.getErrorKey(), "Invalid CEP characters");
+        final var objectErrorExpected = new ObjectError(PropertiesConstants.WRONG_CEP_NUMBER.getErrorKey(), "getAddressByCep.cep: Invalid CEP characters.");
 
         final var result = this.getRestTemplateError();
 

@@ -34,7 +34,7 @@ public @interface ValidCEP {
 
         @Override
         public boolean isValid(final String cep, final ConstraintValidatorContext context) {
-            return !cep.matches(CEP_REGEX);
+            return cep.matches(CEP_REGEX);
         }
     }
 }
