@@ -127,7 +127,7 @@
 					<docker>
 						<publishRegistry>
 							<username>${repo.username}</username>
-							<password>${repo.password}</password>
+							<token>${repo.password}</token>
 							<url>${repo.url}</url>
 						</publishRegistry>
 					</docker>
