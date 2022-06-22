@@ -1,6 +1,6 @@
 spring:
   application:
-    name: examples
+    name: viacep-proxy-service
   cache:
     type: ${CACHE_TYPE:redis}
   redis:
