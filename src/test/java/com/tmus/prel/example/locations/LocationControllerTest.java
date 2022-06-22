@@ -8,7 +8,6 @@ import static com.github.tomakehurst.wiremock.client.WireMock.stubFor;
 import static com.github.tomakehurst.wiremock.client.WireMock.urlEqualTo;
 import static com.github.tomakehurst.wiremock.client.WireMock.verify;
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.springframework.cloud.contract.spec.internal.MediaTypes.APPLICATION_JSON;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
@@ -35,7 +34,7 @@ import org.springframework.http.ResponseEntity;
 @AutoConfigureWireMock(port = 41393)
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT,
         properties = {"app.endpoints.viacep.ws=http://localhost:41393", "spring.cache.type=none"})
-@DisplayName("Location Functional Tests")
+@DisplayName("Location Controller Functional Tests")
 class LocationControllerTest {
 
     private static final String CEP = "88015420";
@@ -86,9 +85,9 @@ class LocationControllerTest {
 
         final var result = this.getRestTemplate(CONTEXT_PATH + REQUEST_ENDPOINT);
 
-        assertEquals(HttpStatus.OK, result.getStatusCode());
-        assertNotNull(result.getBody());
-        assertEquals(addressExpected, result.getBody());
+        assertEquals(HttpStatus.OK, result.getStatusCode(), "Request response should have status 200 OK");
+        assertEquals(addressExpected, result.getBody(), "Request response payload should match the expected");
+        verify(getRequestedFor(urlEqualTo(this.viacepRightURI)));
     }
 
     @Test
@@ -100,9 +99,8 @@ class LocationControllerTest {
 
         final var result = this.getRestTemplate(CONTEXT_PATH + FALLBACK_PATH + REQUEST_ENDPOINT);
 
-        assertEquals(HttpStatus.OK, result.getStatusCode());
-        assertNotNull(result.getBody());
-        assertEquals(addressExpected, result.getBody());
+        assertEquals(HttpStatus.OK, result.getStatusCode(), "Request response should have status 200 OK");
+        assertEquals(addressExpected, result.getBody(), "Request response payload should match the expected");
         verify(3, getRequestedFor(urlEqualTo(viacepWrongURI)));
         verify(getRequestedFor(urlEqualTo(this.viacepRightURI)));
     }
@@ -110,13 +108,12 @@ class LocationControllerTest {
     @Test
     @DisplayName("Check cep with wrong match")
     void checkCEPFailed() {
-        final var objectErrorExpected = new ObjectError(PropertiesConstants.WRONG_CEP_NUMBER.getErrorKey(), "Invalid CEP characters");
+        final var objectErrorExpected = new ObjectError(PropertiesConstants.WRONG_CEP_NUMBER.getErrorKey(), "getAddressByCep.cep: Invalid CEP characters.");
 
         final var result = this.getRestTemplateError();
 
-        assertEquals(HttpStatus.BAD_REQUEST, result.getStatusCode());
-        assertNotNull(result.getBody());
-        assertEquals(objectErrorExpected, result.getBody());
+        assertEquals(HttpStatus.BAD_REQUEST, result.getStatusCode(), "Request response should have status 400 BAD REQUEST");
+        assertEquals(objectErrorExpected, result.getBody(),"Request response payload should match the expected");
     }
 
     private void stubForGetSuccess() throws JsonProcessingException {

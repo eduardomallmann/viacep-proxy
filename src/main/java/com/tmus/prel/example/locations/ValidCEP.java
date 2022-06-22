@@ -11,6 +11,11 @@ import javax.validation.ConstraintValidator;
 import javax.validation.ConstraintValidatorContext;
 import javax.validation.Payload;
 
+/**
+ * Custom validation for the zip code passed in the path variable request.
+ *
+ * @author 013087631
+ */
 @Target({PARAMETER})
 @Retention(RUNTIME)
 @Constraint(validatedBy = {ValidCEP.CepValidator.class})
@@ -23,6 +28,9 @@ public @interface ValidCEP {
 
     Class<? extends Payload>[] payload() default {};
 
+    /**
+     * Zip code Validator, responsible for the validation logic.
+     */
     class CepValidator implements ConstraintValidator<ValidCEP, String> {
 
         private static final String CEP_REGEX = "[0-9]{8}";
@@ -34,7 +42,7 @@ public @interface ValidCEP {
 
         @Override
         public boolean isValid(final String cep, final ConstraintValidatorContext context) {
-            return !cep.matches(CEP_REGEX);
+            return cep.matches(CEP_REGEX);
         }
     }
 }

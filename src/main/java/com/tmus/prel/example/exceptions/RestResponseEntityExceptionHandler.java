@@ -15,16 +15,35 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.context.request.WebRequest;
 import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExceptionHandler;
 
+/**
+ * Global exception handler, responsible to catch all exceptions launched from the controller and treat as per application convenience.
+ *
+ * @author 013087631
+ */
 @Slf4j
 @ControllerAdvice
 public class RestResponseEntityExceptionHandler extends ResponseEntityExceptionHandler {
 
+    /**
+     * Handles business logic exception response to the origin.
+     *
+     * @param ex exception thrown
+     *
+     * @return the exceptions in a error message standard inside a response entity.
+     */
     @ExceptionHandler(BusinessException.class)
     protected ResponseEntity<ObjectError> handleBusinessExceptions(final BusinessException ex) {
-        log.error("M=handleBusinessExceptions, message=Start handling BusinessException, error={}",ex.getObjectError());
+        log.error("M=handleBusinessExceptions, message=Start handling BusinessException, error={}", ex.getObjectError());
         return ResponseEntity.badRequest().contentType(MediaType.APPLICATION_JSON).body(ex.getObjectError());
     }
 
+    /**
+     * Handles constraint violation exceptions coming from validation.
+     *
+     * @param e constrain violation validation error
+     *
+     * @return the exceptions in a error message standard inside a response entity.
+     */
     @ExceptionHandler(ConstraintViolationException.class)
     protected ResponseEntity<ObjectError> handleConstraintViolationException(final ConstraintViolationException e) {
         log.error("M=handleConstraintViolationException, violations={}", e.getConstraintViolations());
@@ -32,6 +51,13 @@ public class RestResponseEntityExceptionHandler extends ResponseEntityExceptionH
         return ResponseEntity.badRequest().contentType(MediaType.APPLICATION_JSON).body(error);
     }
 
+    /**
+     * Handles all exceptions not treated specifically in other exceptions.
+     *
+     * @param ex exception thrown
+     *
+     * @return the exceptions in a error message standard inside a response entity.
+     */
     @ExceptionHandler(value = Exception.class)
     protected ResponseEntity<ObjectError> handleExceptions(final Exception ex) {
         ObjectError error = ObjectError.builder().exception(ex.getClass().getName()).message(ex.getMessage()).build();

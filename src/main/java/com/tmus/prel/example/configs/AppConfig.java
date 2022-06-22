@@ -18,8 +18,7 @@ import org.springframework.web.client.RestTemplate;
 /**
  * Application beans instantiation by configurations.
  *
- * @author eduardomallmann
- * @since 0.0.1
+ * @author 013087631
  */
 @Configuration
 @EnableCaching
@@ -38,6 +37,11 @@ public class AppConfig {
         return messageSource;
     }
 
+    /**
+     * Configure the redis cache use.
+     *
+     * @return A {@code RedisCacheConfiguration} instantiated object.
+     */
     @Bean
     public RedisCacheConfiguration cacheConfiguration() {
         return RedisCacheConfiguration.defaultCacheConfig()
@@ -46,6 +50,11 @@ public class AppConfig {
                        .serializeValuesWith(RedisSerializationContext.SerializationPair.fromSerializer(new GenericJackson2JsonRedisSerializer()));
     }
 
+    /**
+     * Feign Logger Level configuration.
+     *
+     * @return {@code Logger.Level} for Feign.
+     */
     @Bean
     Logger.Level feignLoggerLevel() {
         return Logger.Level.FULL;
