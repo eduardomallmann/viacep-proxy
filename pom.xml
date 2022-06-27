@@ -22,7 +22,7 @@
 		<repo.password>${env.REPO_PWD}</repo.password>
 		<repo.url>${env.REPO_URL}</repo.url>
 		<publish.image>${env.PUBLISH}</publish.image>
-		<scm.url>https://gitlab.com/tmobile/privacy-experience-layer/examples/example</scm.url>
+		<scm.url>https://gitlab.com/tmobile/privacy-experience-layer/examples/eddy-example</scm.url>
 	</properties>
 
 	<scm>
