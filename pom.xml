@@ -119,38 +119,103 @@
 		</dependencies>
 	</dependencyManagement>
 
+	<profiles>
+		<profile>
+			<id>azurecr</id>
+			<build>
+				<plugins>
+					<plugin>
+						<groupId>org.springframework.boot</groupId>
+						<artifactId>spring-boot-maven-plugin</artifactId>
+						<executions>
+							<execution>
+								<goals>
+									<goal>repackage</goal>
+									<goal>build-info</goal>
+								</goals>
+							</execution>
+						</executions>
+						<configuration>
+							<layers>
+								<enabled>true</enabled>
+								<includeLayerTools>false</includeLayerTools>
+							</layers>
+							<image>
+								<name>${image.name}</name>
+								<publish>${publish.image}</publish>
+								<env>
+									<BP_JVM_VERSION>${java.version}</BP_JVM_VERSION>
+								</env>
+							</image>
+							<docker>
+								<publishRegistry>
+									<username>${repo.username}</username>
+									<password>${repo.password}</password>
+									<url>${repo.url}</url>
+								</publishRegistry>
+							</docker>
+							<excludes>
+								<exclude>
+									<groupId>org.projectlombok</groupId>
+									<artifactId>lombok</artifactId>
+								</exclude>
+							</excludes>
+						</configuration>
+					</plugin>
+				</plugins>
+			</build>
+		</profile>
+		<profile>
+			<id>gitlabcr</id>
+			<build>
+				<plugins>
+					<plugin>
+						<groupId>org.springframework.boot</groupId>
+						<artifactId>spring-boot-maven-plugin</artifactId>
+						<executions>
+							<execution>
+								<goals>
+									<goal>repackage</goal>
+									<goal>build-info</goal>
+								</goals>
+							</execution>
+						</executions>
+						<configuration>
+							<layers>
+								<enabled>true</enabled>
+								<includeLayerTools>false</includeLayerTools>
+							</layers>
+							<image>
+								<name>${image.name}:${project.version}</name>
+								<publish>${publish.image}</publish>
+								<env>
+									<BP_JVM_VERSION>${java.version}</BP_JVM_VERSION>
+								</env>
+							</image>
+							<docker>
+								<publishRegistry>
+									<token>${repo.password}</token>
+								</publishRegistry>
+							</docker>
+							<excludes>
+								<exclude>
+									<groupId>org.projectlombok</groupId>
+									<artifactId>lombok</artifactId>
+								</exclude>
+							</excludes>
+						</configuration>
+					</plugin>
+				</plugins>
+			</build>
+		</profile>
+	</profiles>
+
 	<build>
 		<plugins>
 			<plugin>
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
-				<executions>
-					<execution>
-						<goals>
-							<goal>repackage</goal>
-							<goal>build-info</goal>
-						</goals>
-					</execution>
-				</executions>
 				<configuration>
-					<layers>
-						<enabled>true</enabled>
-						<includeLayerTools>false</includeLayerTools>
-					</layers>
-					<image>
-						<name>${image.name}</name>
-						<publish>${publish.image}</publish>
-						<env>
-							<BP_JVM_VERSION>${java.version}</BP_JVM_VERSION>
-						</env>
-					</image>
-					<docker>
-						<publishRegistry>
-							<username>${repo.username}</username>
-							<password>${repo.password}</password>
-							<url>${repo.url}</url>
-						</publishRegistry>
-					</docker>
 					<excludes>
 						<exclude>
 							<groupId>org.projectlombok</groupId>

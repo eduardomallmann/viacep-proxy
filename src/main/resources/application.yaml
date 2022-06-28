@@ -22,8 +22,12 @@ app:
 management:
   endpoint:
     health:
+      probes.enabled: true
       show-components: always
       show-details: always
+  health:
+    livenessstate.enabled: true
+    readinessstate.enabled: true
 
 #Feign
 feign:
@@ -70,3 +74,13 @@ resilience4j:
 logging:
   level:
     com.tmus.prel.example: DEBUG
+
+---
+spring:
+  profiles:
+    active: no-redis
+  cache:
+    type: simple
+  autoconfigure:
+    exclude:
+      - org.springframework.boot.autoconfigure.data.redis.RedisAutoConfiguration
