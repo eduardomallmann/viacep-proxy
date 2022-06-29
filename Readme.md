@@ -20,6 +20,6 @@ $ docker run -d -p6379:6379 --name redis redis:latest
 
 ## Running application without Redis
 ```
-$ mvn spring-boot:run -DskipTests -Dspring-boot.run.jvmArguments="-Dspring.cache.type=none"
+$ mvn spring-boot:run -DskipTests -Dspring-boot.run.jvmArguments="-Dspring.profiles.active=no-redis"
 ```
 

@@ -74,13 +74,3 @@ resilience4j:
 logging:
   level:
     com.tmus.prel.example: DEBUG
-
----
-spring:
-  profiles:
-    active: no-redis
-  cache:
-    type: simple
-  autoconfigure:
-    exclude:
-      - org.springframework.boot.autoconfigure.data.redis.RedisAutoConfiguration
