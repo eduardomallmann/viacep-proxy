@@ -9,7 +9,7 @@
 	</parent>
 	<groupId>com.tmus.prel</groupId>
 	<artifactId>example</artifactId>
-	<version>0.0.2</version>
+	<version>0.0.3-SNAPSHOT</version>
 	<name>example</name>
 	<description>example</description>
 	<properties>
@@ -28,7 +28,7 @@
 		<connection>scm:git:${scm.url}</connection>
 		<developerConnection>scm:git:${scm.url}</developerConnection>
 		<url>${scm.url}</url>
-		<tag>v0.0.2</tag>
+		<tag>HEAD</tag>
 	</scm>
 
 	<dependencies>
