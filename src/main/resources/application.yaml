@@ -17,10 +17,7 @@ app:
       ws: ${VIACEP_WS:viacep.com.br/ws}
       right: ${VIACEP_RIGHT:/{cep}/json}
       wrong: ${VIACEP_WRONG:/{cep}/wrong}
-    splunk:
-      hec: ${SPLUNK_HEC:https://splk-hec-b.t-mobile.com:8088}
-      http: ${SPLUNK_HTTP:https://splunk-http-b.t-mobile.com:8088}
-      health: ${SPLUNK_HEALTH_ENDPOINT:/services/collector/health}
+
   auth:
     base-url: ${AUTH_URL:https://qat03.api.t-mobile.com}
     path: ${AUTH_PATH:/oauth2/v6/tokens}
