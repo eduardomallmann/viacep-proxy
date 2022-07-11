@@ -1,5 +1,7 @@
 package com.tmus.prel.example.exceptions;
 
+import com.tmus.prel.example.auth.AuthError;
+import com.tmus.prel.example.auth.AuthenticationException;
 import com.tmus.prel.example.utils.PropertiesConstants;
 import java.util.stream.Collectors;
 import javax.validation.ConstraintViolationException;
@@ -35,6 +37,19 @@ public class RestResponseEntityExceptionHandler extends ResponseEntityExceptionH
     protected ResponseEntity<ObjectError> handleBusinessExceptions(final BusinessException ex) {
         log.error("M=handleBusinessExceptions, message=Start handling BusinessException, error={}", ex.getObjectError());
         return ResponseEntity.badRequest().contentType(MediaType.APPLICATION_JSON).body(ex.getObjectError());
+    }
+
+    /**
+     * Handles authentication exception response to the origin.
+     *
+     * @param ex exception thrown
+     *
+     * @return the exceptions in a error message standard inside a response entity.
+     */
+    @ExceptionHandler(AuthenticationException.class)
+    protected ResponseEntity<AuthError> handleAuthenticationExceptions(final AuthenticationException ex) {
+        log.error("M=handleAuthenticationExceptions, message=Start handling AuthenticationException, error={}", ex.getAuthError());
+        return ResponseEntity.status(HttpStatus.UNAUTHORIZED).contentType(MediaType.APPLICATION_JSON).body(ex.getAuthError());
     }
 
     /**
