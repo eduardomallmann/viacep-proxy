@@ -1,4 +1,4 @@
-package com.tmus.prel.example.exceptions;
+package com.tmus.prel.example.locations.exceptions;
 
 import com.tmus.prel.example.utils.MessageUtils;
 import java.io.Serializable;

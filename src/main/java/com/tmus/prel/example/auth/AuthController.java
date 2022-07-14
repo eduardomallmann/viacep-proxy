@@ -1,10 +1,10 @@
 package com.tmus.prel.example.auth;
 
 import com.tmobile.security.taap.poptoken.builder.exception.PopTokenBuilderException;
+import com.tmus.prel.example.auth.exceptions.AuthenticationException;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;

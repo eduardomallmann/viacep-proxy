@@ -1,4 +1,4 @@
-package com.tmus.prel.example.auth;
+package com.tmus.prel.example.auth.utils;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;

@@ -2,6 +2,7 @@ package com.tmus.prel.example.locations;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -33,7 +34,7 @@ public class LocationController {
      *
      * @return {@code Address} object for the zip code searched.
      */
-    @GetMapping("/{cep}")
+    @GetMapping(value = "/{cep}", produces = {MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE})
     public ResponseEntity<Address> getAddressByCep(@PathVariable @ValidCEP String cep) {
         log.info("M=getAddressByCep, message=Request received, cep={}", cep);
         return ResponseEntity.ok(locationService.getAddressByCep(cep));

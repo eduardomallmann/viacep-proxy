@@ -1,6 +1,8 @@
 package com.tmus.prel.example.auth;
 
 import com.tmobile.security.taap.poptoken.builder.exception.PopTokenBuilderException;
+import com.tmus.prel.example.auth.exceptions.AuthenticationException;
+import com.tmus.prel.example.auth.utils.AuthUtils;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
@@ -24,7 +26,7 @@ public class AuthService {
             return authToken;
         } catch (Exception e) {
             log.error("M=getToken, message=Authentication token failed, exception={}", e.getMessage());
-            throw new AuthenticationException(e.getMessage());
+            throw new AuthenticationException(e);
         }
     }
 }

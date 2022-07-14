@@ -1,4 +1,4 @@
-package com.tmus.prel.example.auth;
+package com.tmus.prel.example.auth.exceptions;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.AllArgsConstructor;

@@ -1,5 +1,6 @@
 package com.tmus.prel.example.auth;
 
+import com.tmus.prel.example.auth.utils.AuthUtils;
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.MediaType;

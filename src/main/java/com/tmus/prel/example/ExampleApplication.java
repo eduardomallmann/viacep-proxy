@@ -1,6 +1,6 @@
 package com.tmus.prel.example;
 
-import com.tmus.prel.example.auth.AuthProperties;
+import com.tmus.prel.example.auth.utils.AuthProperties;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;

@@ -19,7 +19,7 @@ app:
       wrong: ${VIACEP_WRONG:/{cep}/wrong}
 
   auth:
-    base-url: ${AUTH_URL:https://qat03.api.t-mobile.com}
+    base-url: ${AUTH_URL:https://qat03.api.t-mobile.co}
     path: ${AUTH_PATH:/oauth2/v6/tokens}
     client-id: ${CLIENT_ID:xxxxxx}
     client-secret: ${CLIENT_SECRET:yyyyyyyyy}
@@ -27,7 +27,32 @@ app:
       private-key-pass: ${PRIVATE_KEY_PASS:yyyyyyyyy}
       private-key: |
         -----BEGIN PRIVATE KEY-----
-        
+        MIIEvgIBADANBgkqhkiG9w0BAQEFAASCBKgwggSkAgEAAoIBAQDbN3u3Hu1J1rVd
+        oSE2MeYFaoU6rY45xh33LsXcoN6w9Lk+BaQemMNSFimiiwyeZQiWKrB8mp/cJBXQ
+        MmWuQtaJ3DrPa1QZASH6QGKSb2am2CxL1L+GPOMqASQ9aOkyc3kvI3cIFfdqGJ2o
+        yM6+zcSfcT3OGNELyxjVtJD6TsXnkUuRR9sup5FKytcghEDZE3y9KkfbEiPx4OSp
+        12RNHKQ8GDJCsa8Oyrhd+ztxlw2acRzhr0qAmNb/gkcgArxD1ZzyA/ZXNVJfJY9+
+        lq+4fI0QgJDHC44PXnEx18gJghc7B+L3VtP5JkZbQOrEDx6C57p/p04dZMk2XMP9
+        mz/g8BLFAgMBAAECggEAdV3vTsuwH6hk0gxCy9FLZfrx+ciSLTx1LrJMHSPEFtnv
+        k9VRWVBQwtI62Fu6FdPiFQQmGZBvpl1rkFxrNDF0y7qtgf/ktr50gpeWLvCV9R4o
+        GTF+mVBgD00tKfPRZsGMUECcqieYn6UuQ/+/MUjZzMPEY2PGCJpkYYabWGh0bNXP
+        5X0r286MdFZyDkyaL3+sGIxvBrzQPDIyQdRzQFQ6H3h6WcSW/4FfgYEKJp08T93o
+        rKOi4dFCV0MruI466Q4XQIQybDI/bQmRHD2EglzKVcucM18Aiud0+6DhNC+VhYWd
+        UNWSpQSQ3AofayWgidaTkVAkG65pTUtlRDuFj1K2wQKBgQD0WiPzDCl0KzvM6Nbk
+        UXrpW2UoqJc32xHdqx5rWdvuNmQBJWnPHEP6gCt8wK/+bi0rZx9ZrjJm9AGKL5CK
+        TaEWS9thKdX74ifjLB2TT+sFmUbUozNluNwPS/SF8dBBbQzjeffllopFrNfM5G9W
+        4zRh2hMEtOMHh3PX1scl09xo9wKBgQDlqpzVoAYMwmIM3ia0OeUvoVQRKnSvNFMu
+        xbT3ZdUBShd2NITODpkxacXaps85Vd2BGkhityuwiYlay9Xck0PQ5xivcJPmi2aD
+        xdE9j+YRxyVKrlPAXxbeyDG6LQ0q++SQbXlJtiObHgvDA+RVsb4a1h0tbBt11jcd
+        xExiWQLPIwKBgQDYWP8/cOM7MhROh1HM8b+r4fodF7hcAiE9bQcP8Y3iylGdGi0m
+        7VXa86SNXmX1FkP0C+gcFToXIbBDU33cloMsJJnm243U6RZ781F0XuwuFto55w3Y
+        4OYmvQ+RkNrdMtqYhiNRKgrfSfwAM7nI6n40rUrtfeMNhYax8j59ZanfXQKBgQCz
+        aeYdKGaxfwTT4pO/xV6aJ+ChjFYdLLYy2rY1cnLFEBll+T8qLdNU+7lZx2go9UAW
+        A+86VrelsLwBly0ZpF2dC3uISlzwBERweo+sFQb5Kmaiga7hoCcgoKngNCOOSbtT
+        bIIMqGIGYqFzlk3A+Bp3on6mpkaJdnAWK+w0BC8imwKBgHF6KBALKdKbqTBxkIaE
+        z0/0UIa2gGu+AW65MsxOy63pn4DJslUKSrRRHXbbrubxGOdH5IAjCATF/Y79UKyi
+        2QUikRAQQIiRvSpbmmJTuriZouz/pYgVnk0NN4BMRg3jPIsk+rAsGixfWaXsJzKH
+        Ie5bfEpsQKeDAgqhUwVORelR
         -----END PRIVATE KEY-----
 
 #Actuator
@@ -81,7 +106,7 @@ resilience4j:
           - feign.FeignException
           - java.lang.Exception
         ignoreExceptions:
-          - com.tmus.prel.example.exceptions.BusinessException
+          - com.tmus.prel.example.locations.exceptions.BusinessException
 
 logging:
   level:

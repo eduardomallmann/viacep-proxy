@@ -1,4 +1,4 @@
-package com.tmus.prel.example.exceptions;
+package com.tmus.prel.example.locations.exceptions;
 
 /**
  * Class responsible for handle the application logic behaviours failure.
