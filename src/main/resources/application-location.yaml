@@ -1,0 +1,39 @@
+#App Properties
+app:
+  endpoints:
+    viacep:
+      ws: ${VIACEP_WS:viacep.com.br/ws}
+      right: ${VIACEP_RIGHT:/{cep}/json}
+      wrong: ${VIACEP_WRONG:/{cep}/wrong}
+
+#Resilience4J
+resilience4j:
+  circuitbreaker:
+    instances:
+      locationClient:
+        registerHealthIndicator: true
+        slidingWindowSize: 10
+        minimumNumberOfCalls: 5
+        slidingWindowType: TIME_BASED
+        permittedNumberOfCallsInHalfOpenState: 3
+        automaticTransitionFromOpenToHalfOpenEnabled: true
+        waitDurationInOpenState: 2s
+        failureRateThreshold: 30
+        eventConsumerBufferSize: 10
+        recordExceptions:
+          - org.springframework.web.client.HttpServerErrorException
+          - java.io.IOException
+          - feign.FeignException.InternalServerError
+  retry:
+    instances:
+      locationService:
+        maxAttempts: 3
+        waitDuration: 1s
+        enableExponentialBackoff: true
+        exponentialBackoffMultiplier: 2
+        retryExceptions:
+          - org.springframework.web.client.HttpServerErrorException
+          - java.io.IOException
+          - feign.FeignException
+        ignoreExceptions:
+          - com.tmus.prel.example.locations.exceptions.BusinessException

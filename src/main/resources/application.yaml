@@ -1,4 +1,6 @@
 spring:
+  profiles:
+    include: auth, location
   application:
     name: examples
   cache:
@@ -6,29 +8,11 @@ spring:
   redis:
     host: ${REDIS_URI:localhost}
     port: ${REDIS_PORT:6379}
+    password: ${REDIS_PWD}
+    ssl: true
 
 server:
   port: ${SERVER_PORT:8080}
-
-#App Properties
-app:
-  endpoints:
-    viacep:
-      ws: ${VIACEP_WS:viacep.com.br/ws}
-      right: ${VIACEP_RIGHT:/{cep}/json}
-      wrong: ${VIACEP_WRONG:/{cep}/wrong}
-
-  auth:
-    base-url: ${AUTH_URL:https://qat03.api.t-mobile.co}
-    path: ${AUTH_PATH:/oauth2/v6/tokens}
-    client-id: ${CLIENT_ID:xxxxxx}
-    client-secret: ${CLIENT_SECRET:yyyyyyyyy}
-    poptoken:
-      private-key-pass: ${PRIVATE_KEY_PASS:yyyyyyyyy}
-      private-key: |
-        -----BEGIN PRIVATE KEY-----
-        
-        -----END PRIVATE KEY-----
 
 #Actuator
 management:
@@ -50,40 +34,6 @@ feign:
     alphanumeric-ids:
       enabled: false
 
-#Resilience4J
-resilience4j:
-  circuitbreaker:
-    instances:
-      locationClient:
-        registerHealthIndicator: true
-        slidingWindowSize: 10
-        minimumNumberOfCalls: 5
-        slidingWindowType: TIME_BASED
-        permittedNumberOfCallsInHalfOpenState: 3
-        automaticTransitionFromOpenToHalfOpenEnabled: true
-        waitDurationInOpenState: 2s
-        failureRateThreshold: 30
-        eventConsumerBufferSize: 10
-        recordExceptions:
-          - org.springframework.web.client.HttpServerErrorException
-          - java.io.IOException
-          - feign.FeignException.InternalServerError
-  retry:
-    instances:
-      locationService:
-        maxAttempts: 3
-        waitDuration: 1s
-        enableExponentialBackoff: true
-        exponentialBackoffMultiplier: 2
-        retryExceptions:
-          - org.springframework.web.client.HttpServerErrorException
-          - java.io.IOException
-          - feign.FeignException
-          - java.lang.Exception
-        ignoreExceptions:
-          - com.tmus.prel.example.locations.exceptions.BusinessException
-
 logging:
   level:
     com.tmus.prel.example: debug
-    com.tmobile: debug

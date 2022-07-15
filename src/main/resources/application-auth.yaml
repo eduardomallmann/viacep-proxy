@@ -1,0 +1,10 @@
+#App Properties
+app:
+  auth:
+    base-url: ${AUTH_URL:https://qat03.api.t-mobile.com}
+    path: ${AUTH_PATH:/oauth2/v6/tokens}
+    client-id: ${CLIENT_ID:xxxxxx}
+    client-secret: ${CLIENT_SECRET:yyyyyyyyy}
+    poptoken:
+      private-key-pass: ${PRIVATE_KEY_PASS:yyyyyyyyy}
+      private-key: ${PRIVATE_KEY}
