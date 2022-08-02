@@ -37,4 +37,4 @@ feign:
 
 logging:
   level:
-    com.tmus.prel.example: debug
+    com.eduardomallmann.studies.example: debug
