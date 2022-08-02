@@ -36,4 +36,4 @@ resilience4j:
           - java.io.IOException
           - feign.FeignException
         ignoreExceptions:
-          - com.tmus.prel.example.locations.exceptions.BusinessException
+          - com.eduardomallmann.studies.example.locations.exceptions.BusinessException

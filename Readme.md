@@ -3,11 +3,11 @@
 ## Container image building and pushing
 Creating a container and publishing to Container Registry (CR) with maven command line example: 
 ```
-export IMAGE_NAME=preldsr.azurecr.io/examples/eddy-example && \
+export IMAGE_NAME=  && \
 export PUBLISH=true && \
-export REPO_PWD=FrOkGvNQPKUlP=QB7d9BxzCzzjkwrjzJ && \
-export REPO_URL=https//preldsr.azurecr.io && \
-export REPO_USERNAME=preldsr && \
+export REPO_PWD=xxxxxx && \
+export REPO_URL=xxxxxx && \
+export REPO_USERNAME=xxxxx && \
 mvn spring-boot:build-image -DskipTests
 ```
 We can use the same logic to push to any other CR. However, if the CR uses token authentication (like Github) we have to change the param inside the ``pom.xml``.
