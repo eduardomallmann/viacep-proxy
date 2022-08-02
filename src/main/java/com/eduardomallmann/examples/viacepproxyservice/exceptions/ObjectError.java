@@ -1,6 +1,6 @@
-package com.tmus.prel.example.exceptions;
+package com.eduardomallmann.examples.viacepproxyservice.exceptions;
 
-import com.tmus.prel.example.utils.MessageUtils;
+import com.eduardomallmann.examples.viacepproxyservice.utils.MessageUtils;
 import java.io.Serializable;
 import lombok.AllArgsConstructor;
 import lombok.Builder;

@@ -1,10 +1,10 @@
-package com.tmus.prel.example;
+package com.eduardomallmann.examples.viacepproxyservice;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
-class ExampleApplicationTests {
+class ViacepProxyServiceApplicationTests {
 
 	@Test
 	void contextLoads() {

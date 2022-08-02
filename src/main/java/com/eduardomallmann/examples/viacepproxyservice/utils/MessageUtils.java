@@ -1,4 +1,4 @@
-package com.tmus.prel.example.utils;
+package com.eduardomallmann.examples.viacepproxyservice.utils;
 
 import java.util.Locale;
 import lombok.NonNull;

@@ -1,18 +1,12 @@
-package com.tmus.prel.example.exceptions;
+package com.eduardomallmann.examples.viacepproxyservice.exceptions;
 
-import com.tmus.prel.example.utils.PropertiesConstants;
-import java.util.stream.Collectors;
+import com.eduardomallmann.examples.viacepproxyservice.utils.PropertiesConstants;
 import javax.validation.ConstraintViolationException;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.http.HttpHeaders;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
-import org.springframework.web.bind.annotation.ResponseStatus;
-import org.springframework.web.context.request.WebRequest;
 import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExceptionHandler;
 
 @Slf4j

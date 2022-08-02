@@ -1,4 +1,4 @@
-package com.tmus.prel.example.locations;
+package com.eduardomallmann.examples.viacepproxyservice.locations;
 
 import static com.github.tomakehurst.wiremock.client.WireMock.aResponse;
 import static com.github.tomakehurst.wiremock.client.WireMock.get;
@@ -13,8 +13,8 @@ import static org.springframework.cloud.contract.spec.internal.MediaTypes.APPLIC
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.tmus.prel.example.exceptions.ObjectError;
-import com.tmus.prel.example.utils.PropertiesConstants;
+import com.eduardomallmann.examples.viacepproxyservice.exceptions.ObjectError;
+import com.eduardomallmann.examples.viacepproxyservice.utils.PropertiesConstants;
 import java.util.HashMap;
 import java.util.Map;
 import org.junit.jupiter.api.AfterEach;

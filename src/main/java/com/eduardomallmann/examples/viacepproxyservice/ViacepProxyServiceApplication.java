@@ -1,4 +1,4 @@
-package com.tmus.prel.example;
+package com.eduardomallmann.examples.viacepproxyservice;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -6,9 +6,9 @@ import org.springframework.cloud.openfeign.EnableFeignClients;
 
 @EnableFeignClients
 @SpringBootApplication
-public class ExampleApplication {
+public class ViacepProxyServiceApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(ExampleApplication.class, args);
+		SpringApplication.run(ViacepProxyServiceApplication.class, args);
 	}
 }

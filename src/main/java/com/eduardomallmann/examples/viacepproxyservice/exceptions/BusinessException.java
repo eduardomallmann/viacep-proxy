@@ -1,4 +1,4 @@
-package com.tmus.prel.example.exceptions;
+package com.eduardomallmann.examples.viacepproxyservice.exceptions;
 
 /**
  * Class responsible for handle the application logic behaviours failure.

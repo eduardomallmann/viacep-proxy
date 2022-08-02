@@ -1,4 +1,4 @@
-package com.tmus.prel.example.configs;
+package com.eduardomallmann.examples.viacepproxyservice.configs;
 
 import feign.Logger;
 import java.time.Duration;

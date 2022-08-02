@@ -1,0 +1,5 @@
+IMAGE_NAME: ghrc.io/eduardomallmann/viacep-proxy
+PUBLISH: true
+REPO_URL: https://ghrc.io
+REPO_USERNAME: eduardomallmann
+REPO_PWD: ${{ github.token }}

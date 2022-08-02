@@ -1,4 +1,4 @@
-package com.tmus.prel.example.locations;
+package com.eduardomallmann.examples.viacepproxyservice.locations;
 
 import io.github.resilience4j.circuitbreaker.annotation.CircuitBreaker;
 import org.springframework.cache.annotation.CacheConfig;

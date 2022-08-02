@@ -1,4 +1,4 @@
-package com.tmus.prel.example.locations;
+package com.eduardomallmann.examples.viacepproxyservice.locations;
 
 import static java.lang.annotation.ElementType.PARAMETER;
 import static java.lang.annotation.RetentionPolicy.RUNTIME;

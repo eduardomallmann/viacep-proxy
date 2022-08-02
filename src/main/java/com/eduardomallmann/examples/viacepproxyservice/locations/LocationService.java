@@ -1,4 +1,4 @@
-package com.tmus.prel.example.locations;
+package com.eduardomallmann.examples.viacepproxyservice.locations;
 
 import io.github.resilience4j.retry.annotation.Retry;
 import lombok.RequiredArgsConstructor;

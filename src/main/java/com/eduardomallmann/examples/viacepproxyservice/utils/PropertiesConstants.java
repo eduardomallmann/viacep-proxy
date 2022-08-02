@@ -1,4 +1,4 @@
-package com.tmus.prel.example.utils;
+package com.eduardomallmann.examples.viacepproxyservice.utils;
 
 /**
  * Enuns responsáveis pelas mensagens do sistema.

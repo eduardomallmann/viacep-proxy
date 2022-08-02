@@ -1,4 +1,4 @@
-package com.tmus.prel.example.locations;
+package com.eduardomallmann.examples.viacepproxyservice.locations;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
