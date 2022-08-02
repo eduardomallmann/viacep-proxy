@@ -12,7 +12,7 @@ import static org.springframework.cloud.contract.spec.internal.MediaTypes.APPLIC
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.eduardomallmann.studies.example.locations.exceptions.ObjectError;
+import com.eduardomallmann.studies.example.exceptions.ObjectError;
 import com.eduardomallmann.studies.example.utils.PropertiesConstants;
 import java.util.HashMap;
 import java.util.Map;

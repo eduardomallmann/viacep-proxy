@@ -19,7 +19,7 @@ import org.springframework.web.client.RestTemplate;
 /**
  * Application beans instantiation by configurations.
  *
- * @author 013087631
+ * @author eduardomallmann
  */
 @Configuration
 @EnableCaching

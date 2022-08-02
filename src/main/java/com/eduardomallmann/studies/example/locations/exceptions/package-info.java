@@ -1,1 +1,0 @@
-package com.eduardomallmann.studies.example.locations.exceptions;

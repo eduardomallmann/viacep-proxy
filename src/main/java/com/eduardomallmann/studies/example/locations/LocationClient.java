@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.PathVariable;
  * Creates also a call to a non existent endpoint in order to simulate retrial and fallback resilience.
  * </p>
  *
- * @author 013087631
+ * @author eduardomallmann
  */
 @CacheConfig(cacheNames = "cep")
 @CircuitBreaker(name = "locationClient")

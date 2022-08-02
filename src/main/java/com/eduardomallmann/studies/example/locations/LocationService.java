@@ -8,7 +8,7 @@ import org.springframework.stereotype.Service;
 /**
  * Responsible to call the client and implement the retryable and fallback resilience for the wrong endpoint call.
  *
- * @author 013087631
+ * @author eduardomallmann
  */
 @Slf4j
 @Service

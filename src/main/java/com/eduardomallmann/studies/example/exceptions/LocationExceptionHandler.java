@@ -1,4 +1,4 @@
-package com.eduardomallmann.studies.example.locations.exceptions;
+package com.eduardomallmann.studies.example.exceptions;
 
 import com.eduardomallmann.studies.example.utils.PropertiesConstants;
 import javax.validation.ConstraintViolationException;
@@ -13,7 +13,7 @@ import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExcep
 /**
  * Global exception handler, responsible to catch Location exceptions launched from the controller and treat as per application convenience.
  *
- * @author 013087631
+ * @author eduardomallmann
  */
 @Slf4j
 @ControllerAdvice

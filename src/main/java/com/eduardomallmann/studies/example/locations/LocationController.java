@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.RestController;
 /**
  * Rest controller class, responsible to expose the endpoints and receive the external calls.
  *
- * @author 013087631
+ * @author eduardomallmann
  */
 @Slf4j
 @Validated

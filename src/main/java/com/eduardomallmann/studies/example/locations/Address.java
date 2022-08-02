@@ -10,6 +10,11 @@ import lombok.NoArgsConstructor;
 
 import static com.fasterxml.jackson.annotation.JsonInclude.Include.NON_EMPTY;
 
+/**
+ * Data transfer object for via-cep successful responses.
+ *
+ * @author eduardomallmann
+ */
 @Data
 @Builder
 @AllArgsConstructor

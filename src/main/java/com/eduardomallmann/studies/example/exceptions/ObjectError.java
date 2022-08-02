@@ -1,4 +1,4 @@
-package com.eduardomallmann.studies.example.locations.exceptions;
+package com.eduardomallmann.studies.example.exceptions;
 
 import com.eduardomallmann.studies.example.utils.MessageUtils;
 import java.io.Serializable;
@@ -7,6 +7,11 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+/**
+ * Data transfer object used to reply http requests with error.
+ *
+ * @author eduardomallmann
+ */
 @Data
 @Builder
 @NoArgsConstructor

@@ -14,7 +14,7 @@ import javax.validation.Payload;
 /**
  * Custom validation for the zip code passed in the path variable request.
  *
- * @author 013087631
+ * @author eduardomallmann
  */
 @Target({PARAMETER})
 @Retention(RUNTIME)
