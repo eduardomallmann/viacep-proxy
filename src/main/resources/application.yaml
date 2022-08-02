@@ -37,4 +37,4 @@ feign:
 
 logging:
   level:
-    com.eduardomallmann.studies.example: debug
+    com.eduardomallmann.studies.example: ${LOG_LEVEL:debug}
