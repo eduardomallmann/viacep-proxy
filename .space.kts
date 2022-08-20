@@ -1,9 +1,9 @@
 job("Example shell script") {
-    container(displayName = "Say Hello", image = "ubuntu") {
+    container(displayName = "Build Image", image = "openjdk:17") {
         shellScript {
             content = """
-                echo Hello
-                echo World!
+                chmod +x mvnw
+                ./mvnw spring-boot:build-image
             """
         }
     }
