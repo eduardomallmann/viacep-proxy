@@ -1,39 +1,27 @@
 package com.eduardomallmann.studies.example.locations;
 
+import static com.fasterxml.jackson.annotation.JsonInclude.Include.NON_EMPTY;
+
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonInclude;
-import java.io.Serializable;
-import lombok.AllArgsConstructor;
 import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
-
-import static com.fasterxml.jackson.annotation.JsonInclude.Include.NON_EMPTY;
 
 /**
  * Data transfer object for via-cep successful responses.
  *
  * @author eduardomallmann
  */
-@Data
 @Builder
-@AllArgsConstructor
-@NoArgsConstructor
 @JsonInclude(NON_EMPTY)
 @JsonIgnoreProperties(ignoreUnknown = true)
-public class Address implements Serializable {
-
-    private static final long serialVersionUID = 8976707935900584810L;
-
-    private String logradouro;
-    private String complemento;
-    private String ibge;
-    private String cep;
-    private String bairro;
-    private String localidade;
-    private String uf;
-    private String gia;
-    private String ddd;
-    private String siafi;
-
+public record Address(String logradouro,
+               String complemento,
+               String ibge,
+               String cep,
+               String bairro,
+               String localidade,
+               String uf,
+               String gia,
+               String ddd,
+               String siafi) {
 }

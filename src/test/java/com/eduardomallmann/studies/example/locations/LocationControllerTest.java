@@ -10,10 +10,10 @@ import static com.github.tomakehurst.wiremock.client.WireMock.verify;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.springframework.cloud.contract.spec.internal.MediaTypes.APPLICATION_JSON;
 
-import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.databind.ObjectMapper;
 import com.eduardomallmann.studies.example.exceptions.ObjectError;
 import com.eduardomallmann.studies.example.utils.PropertiesConstants;
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import java.util.HashMap;
 import java.util.Map;
 import org.junit.jupiter.api.AfterEach;
