@@ -26,3 +26,4 @@ jobs:
         git config --global user.name "Eduardo Mallmann"
         git config --global push.followTags true
         mvn release:prepare
+        git push
