@@ -6,7 +6,7 @@ on:
       - closed
 
 jobs:
-  build:
+  versioning:
     runs-on: ubuntu-latest
     permissions:
       contents: read
@@ -21,4 +21,8 @@ jobs:
         server-id: github # Value of the distributionManagement/repository/id field of the pom.xml
         settings-path: ${{ github.workspace }} # location for the settings.xml file
     - name: Versioning
-      run: mvn release:prepare
+      run: |
+        git config --global user.email "mallmann.edu@gmail.com"
+        git config --global user.name "Eduardo Mallmann"
+        git config --global push.followTags true
+        mvn release:prepare
