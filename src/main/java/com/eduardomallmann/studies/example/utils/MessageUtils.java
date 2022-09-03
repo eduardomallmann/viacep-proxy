@@ -1,4 +1,4 @@
-package com.eduardomallmann.examples.viacepproxyservice.utils;
+package com.eduardomallmann.studies.example.utils;
 
 import java.util.Locale;
 import lombok.NonNull;

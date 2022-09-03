@@ -1,7 +1,8 @@
-package com.eduardomallmann.examples.viacepproxyservice.configs;
+package com.eduardomallmann.studies.example.configs;
 
 import feign.Logger;
 import java.time.Duration;
+import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.cache.annotation.EnableCaching;
 import org.springframework.cloud.client.loadbalancer.LoadBalanced;
 import org.springframework.cloud.openfeign.EnableFeignClients;
@@ -19,7 +20,6 @@ import org.springframework.web.client.RestTemplate;
  * Application beans instantiation by configurations.
  *
  * @author eduardomallmann
- * @since 0.0.1
  */
 @Configuration
 @EnableCaching
@@ -38,6 +38,11 @@ public class AppConfig {
         return messageSource;
     }
 
+    /**
+     * Configure the redis cache use.
+     *
+     * @return A {@code RedisCacheConfiguration} instantiated object.
+     */
     @Bean
     public RedisCacheConfiguration cacheConfiguration() {
         return RedisCacheConfiguration.defaultCacheConfig()
@@ -46,6 +51,11 @@ public class AppConfig {
                        .serializeValuesWith(RedisSerializationContext.SerializationPair.fromSerializer(new GenericJackson2JsonRedisSerializer()));
     }
 
+    /**
+     * Feign Logger Level configuration.
+     *
+     * @return {@code Logger.Level} for Feign.
+     */
     @Bean
     Logger.Level feignLoggerLevel() {
         return Logger.Level.FULL;

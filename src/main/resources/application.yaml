@@ -1,71 +1,40 @@
 spring:
+  profiles:
+    include: location
   application:
-    name: viacep-proxy-service
+    name: examples
   cache:
     type: ${CACHE_TYPE:redis}
   redis:
     host: ${REDIS_URI:localhost}
     port: ${REDIS_PORT:6379}
+    password: ${REDIS_PWD}
+    ssl: true
+    timeout: 5m
 
 server:
   port: ${SERVER_PORT:8080}
-
-#App Properties
-app:
-  endpoints:
-    viacep:
-      ws: ${VIACEP_WS:viacep.com.br/ws}
-      right: ${VIACEP_RIGHT:/{cep}/json}
-      wrong: ${VIACEP_WRONG:/{cep}/wrong}
 
 #Actuator
 management:
   endpoint:
     health:
+      probes.enabled: true
       show-components: always
       show-details: always
+  health:
+    livenessstate.enabled: true
+    readinessstate.enabled: true
 
 #Feign
 feign:
   client:
     refresh-enabled: true
   circuitbreaker:
-    enabled: true
+    enabled: false
     alphanumeric-ids:
-      enabled: true
-
-#Resilience4J
-resilience4j:
-  circuitbreaker:
-    instances:
-      locationClient:
-        registerHealthIndicator: true
-        slidingWindowSize: 10
-        minimumNumberOfCalls: 5
-        slidingWindowType: TIME_BASED
-        permittedNumberOfCallsInHalfOpenState: 3
-        automaticTransitionFromOpenToHalfOpenEnabled: true
-        waitDurationInOpenState: 2s
-        failureRateThreshold: 30
-        eventConsumerBufferSize: 10
-        recordExceptions:
-          - org.springframework.web.client.HttpServerErrorException
-          - java.io.IOException
-          - feign.FeignException.InternalServerError
-  retry:
-    instances:
-      locationService:
-        maxAttempts: 3
-        waitDuration: 1s
-        enableExponentialBackoff: true
-        exponentialBackoffMultiplier: 2
-        retryExceptions:
-          - org.springframework.web.client.HttpServerErrorException
-          - java.io.IOException
-          - feign.FeignException
-        ignoreExceptions:
-          - com.eduardomallmann.examples.viacepproxyservice.exceptions.BusinessException
+      enabled: false
 
 logging:
   level:
-    com.tmus.prel.example: DEBUG
+    com.eduardomallmann.studies.example: ${LOG_LEVEL:debug}

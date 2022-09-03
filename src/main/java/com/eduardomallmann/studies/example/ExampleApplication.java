@@ -1,14 +1,19 @@
-package com.eduardomallmann.examples.viacepproxyservice;
+package com.eduardomallmann.studies.example;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.cloud.openfeign.EnableFeignClients;
 
+/**
+ * Main application class.
+ *
+ * @author eduardomallmann
+ */
 @EnableFeignClients
 @SpringBootApplication
-public class ViacepProxyServiceApplication {
+public class ExampleApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(ViacepProxyServiceApplication.class, args);
+		SpringApplication.run(ExampleApplication.class, args);
 	}
 }

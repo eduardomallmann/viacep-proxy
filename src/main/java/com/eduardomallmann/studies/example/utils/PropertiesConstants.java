@@ -1,9 +1,9 @@
-package com.eduardomallmann.examples.viacepproxyservice.utils;
+package com.eduardomallmann.studies.example.utils;
 
 /**
  * Enuns responsáveis pelas mensagens do sistema.
  *
- * @author eduardo.mallmann
+ * @author eduardomallmann
  * @since 0.0.1
  */
 public enum PropertiesConstants {

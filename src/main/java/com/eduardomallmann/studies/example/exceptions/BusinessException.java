@@ -1,4 +1,4 @@
-package com.eduardomallmann.examples.viacepproxyservice.exceptions;
+package com.eduardomallmann.studies.example.exceptions;
 
 /**
  * Class responsible for handle the application logic behaviours failure.
