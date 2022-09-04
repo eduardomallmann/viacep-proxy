@@ -15,7 +15,6 @@ jobs:
       packages: write
       actions: write
       pull-requests: write
-      id-token: read
       repository-projects: write
       checks: write
       deployments: write
