@@ -15,8 +15,14 @@ jobs:
   build:
     runs-on: ubuntu-latest
     permissions:
-      contents: read
+      contents: write
       packages: write
+      actions: write
+      pull-requests: write
+      id-token: read
+      repository-projects: write
+      checks: write
+      deployments: write
 
     steps:
     - uses: actions/checkout@v3
