@@ -36,6 +36,7 @@ jobs:
         git config --global user.name "Eduardo Mallmann"
         git config --global push.followTags true
         git checkout -b ${{ env.AUXILIARY_BRANCH }}
+        git push -u origin ${{ env.AUXILIARY_BRANCH }}
         mvn release:prepare
         curl --location --request POST 'https://api.github.com/repos/eduardomallmann/viacep-proxy/pulls' \
         --header 'Accept: Accept: application/vnd.github+json' \
