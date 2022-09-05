@@ -38,7 +38,7 @@ jobs:
         git checkout -b ${{ env.AUXILIARY_BRANCH }}
         git push -u origin ${{ env.AUXILIARY_BRANCH }}
         mvn --batch-mode release:prepare
-        export NUMBER = (curl --location --request POST 'https://api.github.com/repos/eduardomallmann/viacep-proxy/pulls' \
+        export NUMBER = $(curl --location --request POST 'https://api.github.com/repos/eduardomallmann/viacep-proxy/pulls' \
         --header 'Accept: Accept: application/vnd.github+json' \
         --header 'Authorization: Bearer ${{ secrets.GITHUB_TOKEN }}' \
         --header 'Content-Type: application/json' \
