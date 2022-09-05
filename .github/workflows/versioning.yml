@@ -22,6 +22,8 @@ jobs:
     - uses: actions/checkout@v3
     - name: Set up JDK 17
       uses: actions/setup-java@v3
+      env:
+        AUXILIARY_BRANCH: aux-branch
       with:
         java-version: '17'
         distribution: 'temurin'
@@ -33,4 +35,16 @@ jobs:
         git config --global user.name "Eduardo Mallmann"
         git config --global push.followTags true
         mvn release:prepare
-        git push -f
+        git checkout -b ${{ AUXILIARY_BRANCH }}
+        git push -u origin ${{ AUXILIARY_BRANCH }}
+        curl --location --request POST 'https://api.github.com/repos/eduardomallmann/viacep-proxy/pulls' \
+        --header 'Accept: Accept: application/vnd.github+json' \
+        --header 'Authorization: Bearer ${{ secrets.GITHUB_TOKEN }}' \
+        --header 'Content-Type: application/json' \
+        --data-raw '{
+            "title": "Versioning",
+            "body": "Versioning PR",
+            "head": "eduardomallmann:{{ $AUXILIARY_BRANCH }}",
+            "base": "main"
+        }'
+        jq
