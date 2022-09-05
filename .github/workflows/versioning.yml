@@ -49,7 +49,6 @@ jobs:
             "base": "main"
         }' | jq '.number')
         curl --location --request PUT 'https://api.github.com/repos/eduardomallmann/viacep-proxy/pulls/$NUMBER/merge' \
-        --header 'Accept: Accept: application/vnd.github+json' \
-        --header 'Authorization: Bearer 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' \
-        --header 'Cookie: _octo=GH1.1.1594346806.1653414017; logged_in=no'
+        --header 'Accept: application/vnd.github+json' \
+        --header 'Authorization: Bearer ${{ secrets.GITHUB_TOKEN }}'
         git push origin --delete ${{ env.AUXILIARY_BRANCH }}
