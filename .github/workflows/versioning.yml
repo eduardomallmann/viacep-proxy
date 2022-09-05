@@ -44,7 +44,7 @@ jobs:
         --data-raw '{
             "title": "Versioning",
             "body": "Versioning PR",
-            "head": "eduardomallmann:{{ env.AUXILIARY_BRANCH }}",
+            "head": "eduardomallmann:${{ env.AUXILIARY_BRANCH }}",
             "base": "main"
         }'
         jq
