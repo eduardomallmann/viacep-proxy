@@ -38,17 +38,17 @@ jobs:
         git checkout -b ${{ env.AUXILIARY_BRANCH }}
         git push -u origin ${{ env.AUXILIARY_BRANCH }}
         mvn --batch-mode release:prepare
-        echo "NUMBER=$(curl --location --request POST '${{ env.GITHUB_API_URL }}/repos/${{ env.GITHUB_REPOSITORY }}/pulls' \
+        echo "NUMBER=$(curl --location --request POST '${{ github.GITHUB_API_URL }}/repos/${{ github.GITHUB_REPOSITORY }}/pulls' \
         --header 'Accept: Accept: application/vnd.github+json' \
         --header 'Authorization: Bearer ${{ secrets.GITHUB_TOKEN }}' \
         --header 'Content-Type: application/json' \
         --data-raw '{
             "title": "Versioning",
             "body": "Versioning PR",
-            "head": "${{ env.GITHUB_REPOSITORY_OWNER }}:${{ env.AUXILIARY_BRANCH }}",
+            "head": "${{ github.GITHUB_REPOSITORY_OWNER }}:${{ env.AUXILIARY_BRANCH }}",
             "base": "main"
         }' | jq '.number')" >> $GITHUB_ENV 
-        curl --location --request PUT '${{ env.GITHUB_API_URL }}/repos/${{ env.GITHUB_REPOSITORY }}/pulls/$NUMBER/merge' \
+        curl --location --request PUT '${{ github.GITHUB_API_URL }}/repos/${{ github.GITHUB_REPOSITORY }}/pulls/$NUMBER/merge' \
         --header 'Accept: application/vnd.github+json' \
         --header 'Authorization: Bearer ${{ secrets.GITHUB_TOKEN }}'
         git push origin --delete ${{ env.AUXILIARY_BRANCH }}
