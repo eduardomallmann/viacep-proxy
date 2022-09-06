@@ -9,7 +9,7 @@ on:
 
 env:
   AUXILIARY_BRANCH: aux-branch
-  REPO_PULL_URL: ${{ github.api.url }}/repos/${{ github.repository }}/pulls
+  REPO_PULL_URL: $GITHUB_API_URL/repos/${{ github.repository }}/pulls
 
 jobs:
   versioning:
