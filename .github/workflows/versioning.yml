@@ -9,6 +9,7 @@ on:
 
 env:
   AUXILIARY_BRANCH: aux-branch
+  REPO_PULL_URL: ${{ github.api.url }}/repos/${{ github.repository }}/pulls
 
 jobs:
   versioning:
@@ -37,18 +38,19 @@ jobs:
         git config --global push.followTags true
         git checkout -b ${{ env.AUXILIARY_BRANCH }}
         git push -u origin ${{ env.AUXILIARY_BRANCH }}
+        echo "REPO_PULL_URL=${{ env.REPO_PULL_URL }}"
         mvn --batch-mode release:prepare
-        NUMBER=$(curl --location --request POST '$GITHUB_API_URL/repos/$GITHUB_REPOSITORY/pulls' \
+        NUMBER=$(curl --location --request POST '${{ env.REPO_PULL_URL }}' \
         --header 'Accept: Accept: application/vnd.github+json' \
         --header 'Authorization: Bearer ${{ secrets.GITHUB_TOKEN }}' \
         --header 'Content-Type: application/json' \
         --data-raw '{
             "title": "Versioning",
             "body": "Versioning PR",
-            "head": "$GITHUB_REPOSITORY_OWNER:${{ env.AUXILIARY_BRANCH }}",
+            "head": "${{ github.repository.owner }}:${{ env.AUXILIARY_BRANCH }}",
             "base": "main"
         }' | jq '.number')
-        curl --location --request PUT '$GITHUB_API_URL/repos/$GITHUB_REPOSITORY/pulls/$NUMBER/merge' \
+        curl --location --request PUT '${{ env.REPO_PULL_URL }}/$NUMBER/merge' \
         --header 'Accept: application/vnd.github+json' \
         --header 'Authorization: Bearer ${{ secrets.GITHUB_TOKEN }}'
         git push origin --delete ${{ env.AUXILIARY_BRANCH }}
