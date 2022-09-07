@@ -44,8 +44,9 @@ jobs:
         git checkout $AUXILIARY_BRANCH
         mvn --batch-mode release:prepare
     - name: Persist Versioning
+      id: persist_versioning
       run: |
-        NUMBER=$(curl --location --request POST '${{ env.REPO_PULL_URL }}' \
+        export NUMBER=$(curl --location --request POST '${{ env.REPO_PULL_URL }}' \
         --header 'Accept: Accept: application/vnd.github+json' \
         --header 'Authorization: Bearer ${{ secrets.GITHUB_TOKEN }}' \
         --header 'Content-Type: application/json' \
@@ -58,6 +59,10 @@ jobs:
         curl --location --request PUT '${{ env.REPO_PULL_URL }}/$NUMBER/merge' \
         --header 'Accept: application/vnd.github+json' \
         --header 'Authorization: Bearer ${{ secrets.GITHUB_TOKEN }}'
+    - name: Clean Failure
+      if: ${{ failure() && steps.persist_versioning.conclusion == 'failure' }}
+      run: |
+        git push origin --delete $(git rev-list --tags --max-count=1)
     - name: Clean Versioning
       if: ${{ always() }}
       run: |
