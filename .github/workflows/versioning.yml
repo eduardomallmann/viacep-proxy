@@ -54,4 +54,4 @@ jobs:
         --header 'Accept: application/vnd.github+json' \
         --header 'Authorization: Bearer ${{ secrets.GITHUB_TOKEN }}'
         git push origin --delete $AUXILIARY_BRANCH
-      shell: bash
+#      shell: bash
