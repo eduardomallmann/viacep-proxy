@@ -31,16 +31,21 @@ jobs:
         distribution: 'temurin'
         server-id: github # Value of the distributionManagement/repository/id field of the pom.xml
         settings-path: ${{ github.workspace }} # location for the settings.xml file
-    - name: Versioning
+    - name: Prepare Versioning
       run: |
         git config --global user.email "mallmann.edu@gmail.com"
         git config --global user.name "Eduardo Mallmann"
         git config --global push.followTags true
         git checkout -b $AUXILIARY_BRANCH
         git push -u origin $AUXILIARY_BRANCH
-        echo "REPO_PULL_URL=$REPO_PULL_URL"
+    - name: Versioning
+      run: |
+        echo "REPO_PULL_URL=${{ env.REPO_PULL_URL }}"
+        git checkout $AUXILIARY_BRANCH
         mvn --batch-mode release:prepare
-        NUMBER=$(curl --location --request POST '$REPO_PULL_URL' \
+    - name: Persist Versioning
+      run: |
+        NUMBER=$(curl --location --request POST '${{ env.REPO_PULL_URL }}' \
         --header 'Accept: Accept: application/vnd.github+json' \
         --header 'Authorization: Bearer ${{ secrets.GITHUB_TOKEN }}' \
         --header 'Content-Type: application/json' \
@@ -50,8 +55,10 @@ jobs:
             "head": "$GITHUB_REPOSITORY_OWNER:$AUXILIARY_BRANCH",
             "base": "main"
         }' | jq '.number')
-        curl --location --request PUT '$REPO_PULL_URL/$NUMBER/merge' \
+        curl --location --request PUT '${{ env.REPO_PULL_URL }}/$NUMBER/merge' \
         --header 'Accept: application/vnd.github+json' \
         --header 'Authorization: Bearer ${{ secrets.GITHUB_TOKEN }}'
+    - name: Clean Versioning
+      run: | 
         git push origin --delete $AUXILIARY_BRANCH
 #      shell: bash
