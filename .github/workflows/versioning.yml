@@ -46,7 +46,7 @@ jobs:
     - name: Persist Versioning
       id: persist_versioning
       run: |
-        export NUMBER=$(curl --location --request POST '${{ env.REPO_PULL_URL }}' \
+        echo "NUMBER=$(curl --location --request POST '${{ env.REPO_PULL_URL }}' \
         --header 'Accept: Accept: application/vnd.github+json' \
         --header 'Authorization: Bearer ${{ secrets.GITHUB_TOKEN }}' \
         --header 'Content-Type: application/json' \
@@ -55,7 +55,7 @@ jobs:
             "body": "Versioning PR",
             "head": "${{ github.repository_owner }}:$AUXILIARY_BRANCH",
             "base": "main"
-        }' | jq '.number')
+        }' | jq '.number')" >> $GITHUB_ENV
         echo $NUMBER
         curl --location --request PUT '${{ env.REPO_PULL_URL }}/$NUMBER/merge' \
         --header 'Accept: application/vnd.github+json' \
