@@ -9,7 +9,7 @@ on:
 
 env:
   AUXILIARY_BRANCH: aux-branch
-  REPO_PULL_URL: $GITHUB_API_URL/repos/${{ github.repository }}/pulls
+  REPO_PULL_URL: ${GITHUB_API_URL}/repos/${{ github.repository }}/pulls
 
 jobs:
   versioning:
@@ -52,13 +52,11 @@ jobs:
         --data-raw '{
             "title": "Versioning",
             "body": "Versioning PR",
-            "head": "$GITHUB_REPOSITORY_OWNER:$AUXILIARY_BRANCH",
+            "head": "${GITHUB_REPOSITORY_OWNER}:$AUXILIARY_BRANCH",
             "base": "main"
         }' | jq '.number')
         curl --location --request PUT '${{ env.REPO_PULL_URL }}/$NUMBER/merge' \
         --header 'Accept: application/vnd.github+json' \
         --header 'Authorization: Bearer ${{ secrets.GITHUB_TOKEN }}'
     - name: Clean Versioning
-      run: | 
-        git push origin --delete $AUXILIARY_BRANCH
-#      shell: bash
+      run: git push origin --delete $AUXILIARY_BRANCH
