@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
-export NUMBER=$(curl --location --request POST 'https://api.github.com/repos/eduardomallmann/viacep-proxy/pulls' \
+export NUMBER=$(curl -u eduardomallmann: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 --location --request POST 'https://api.github.com/repos/eduardomallmann/viacep-proxy/pulls' \
 --header 'Accept: Accept: application/vnd.github+json' \
---header 'Authorization: Bearer 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' \
+--header 'Authorization: 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' \
 --header 'Content-Type: application/json' \
 --data-raw '{
     "title": "Merging changes",
@@ -12,4 +12,4 @@ export NUMBER=$(curl --location --request POST 'https://api.github.com/repos/edu
 
 curl --location --request PUT 'https://api.github.com/repos/eduardomallmann/viacep-proxy/pulls/$NUMBER/merge' \
 --header 'Accept: application/vnd.github+json' \
---header 'Authorization: Bearer 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'
+--header 'Authorization: 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'
