@@ -56,7 +56,7 @@ jobs:
             "head": "${{ github.repository_owner }}:$AUXILIARY_BRANCH",
             "base": "main"
         }' | jq .number)
-        echo "NUMBER=$NUMBER"
+        echo "NUMBER=$NUMBER" 
         curl --location --request PUT '${{ env.REPO_PULL_URL }}/$NUMBER/merge' \
         --header 'Accept: application/vnd.github+json' \
         --header 'Authorization: Bearer ${{ secrets.GITHUB_TOKEN }}'
