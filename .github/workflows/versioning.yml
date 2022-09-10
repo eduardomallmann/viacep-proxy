@@ -38,13 +38,12 @@ jobs:
         git config --global push.followTags true
         git checkout -b $AUXILIARY_BRANCH
         git push -u origin $AUXILIARY_BRANCH
-    - name: Versioning
+    - name: Rotating and Tagging
       run: |
         echo "REPO_PULL_URL=${{ env.REPO_PULL_URL }}"
         git checkout $AUXILIARY_BRANCH
         mvn --batch-mode release:prepare
-    - name: Persist Versioning
-      id: persist_versioning
+    - name: Versioning PR
       run: |
         curl --location --request POST '${{ env.REPO_PULL_URL }}' \
           --header 'Accept: Accept: application/vnd.github+json' \
@@ -56,14 +55,14 @@ jobs:
               "head": "${{ github.repository_owner }}:$AUXILIARY_BRANCH",
               "base": "main"
           }'
-        
-        curl --location --request PUT '${{ env.REPO_PULL_URL }}/$NUMBER/merge' \
-        --header 'Accept: application/vnd.github+json' \
-        --header 'Authorization: Bearer ${{ secrets.GITHUB_TOKEN }}'
-    - name: Clean Failure
-      if: ${{ failure() && steps.persist_versioning.conclusion == 'failure' }}
+    - name: Versioning Merge
       run: |
-        git push origin --delete $(git rev-list --tags --max-count=1)
+        export NUMBER=$(curl --location --request GET '${{ env.REPO_PULL_URL }} \
+          ?state=open&head=${{ github.repository_owner }}:$AUXILIARY_BRANCH' | jq '.[0].number')
+        echo "NUMBER=$NUMBER"
+        curl --location --request PUT '${{ env.REPO_PULL_URL }}/$NUMBER/merge' \
+          --header 'Accept: application/vnd.github+json' \
+          --header 'Authorization: Bearer ${{ secrets.GITHUB_TOKEN }}'
     - name: Clean Versioning
       if: ${{ always() }}
       run: |
