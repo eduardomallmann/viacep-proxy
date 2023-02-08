@@ -40,8 +40,8 @@ jobs:
         git checkout v@${{ github.event.inputs.version }}
         mvn spring-boot:build-image
       env:
-        IMAGE_NAME: ghrc.io/${{ github.repository }}:${{ github.event.inputs.version }}
+        IMAGE_NAME: ghcr.io/${{ github.repository }}:${{ github.event.inputs.version }}
         PUBLISH: true
-        REPO_URL: https://ghrc.io
+        REPO_URL: https://ghcr.io
         REPO_USERNAME:  ${{ github.actor }}
         REPO_PWD: ${{ secrets.GITHUB_TOKEN }}
